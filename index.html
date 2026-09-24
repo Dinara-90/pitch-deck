@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Travely — Pitch Deck | Know before you go</title>
+<meta name="description" content="Travely — sayohatchilar uchun scam radar, haqiqiy sharhlar, yashirin joylar va offline AI yordamchi. Investor pitch deck.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TRAVELY — CLAYMORPHISM PITCH DECK
+   To'q ko'k (navy) + Yashil (mint) • gorizontal (o'ngdan chapga) slaydlar
+   ============================================================ */
+:root{
+  --navy-1000:#040B1C;
+  --navy-950:#071230;
+  --navy-900:#0B1E3F;
+  --navy-850:#0E2549;
+  --navy-800:#133054;
+  --navy-700:#1B3F6B;
+  --navy-600:#24538A;
+
+  --green-300:#7CF7CF;
+  --green-400:#2EE6A8;
+  --green-500:#16C98D;
+  --green-600:#0DA874;
+  --green-700:#087454;
+
+  --amber:#FFC24B;
+  --coral:#FF7A6B;
+  --sky:#63B3FF;
+
+  --text:#EDF4FF;
+  --muted:#9DB3D8;
+  --muted-2:#7C93BB;
+
+  --clay-hi:#17365F;
+  --clay-lo:#0D2245;
+  --r-xl:44px;
+  --r-lg:34px;
+  --r-md:24px;
+  --r-sm:16px;
+
+  --shadow-clay:
+     16px 16px 34px rgba(2,6,18,.60),
+     -9px -9px 26px rgba(110,170,255,.07),
+     inset 6px 6px 14px rgba(255,255,255,.11),
+     inset -7px -7px 16px rgba(0,0,0,.34);
+  --shadow-clay-sm:
+     9px 9px 20px rgba(2,6,18,.55),
+     -5px -5px 14px rgba(110,170,255,.06),
+     inset 4px 4px 9px rgba(255,255,255,.11),
+     inset -5px -5px 11px rgba(0,0,0,.32);
+  --shadow-green:
+     14px 14px 30px rgba(3,40,30,.55),
+     -8px -8px 22px rgba(46,230,168,.16),
+     inset 6px 6px 14px rgba(255,255,255,.35),
+     inset -7px -7px 16px rgba(0,60,40,.35);
+  --font-h:'Baloo 2', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-b:'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+*{box-sizing:border-box; margin:0; padding:0}
+html,body{height:100%}
+body{
+  background:var(--navy-950);
+  color:var(--text);
+  font-family:var(--font-b);
+  overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%; display:block}
+a{color:var(--green-300); text-decoration:none}
+
+/* ---------- Fon (background blobs) ---------- */
+.bg{position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none}
+.bg::after{
+  content:''; position:absolute; inset:0;
+  background-image:radial-gradient(rgba(120,190,255,.07) 1px, transparent 1px);
+  background-size:26px 26px;
+  -webkit-mask-image:radial-gradient(circle at 50% 40%, #000 20%, transparent 78%);
+  mask-image:radial-gradient(circle at 50% 40%, #000 20%, transparent 78%);
+}
+.orb{position:absolute; border-radius:50%; filter:blur(70px); opacity:.42}
+.orb.a{width:46vw; height:46vw; background:#0C7A5B; top:-16vw; left:-10vw}
+.orb.b{width:38vw; height:38vw; background:#124C8F; bottom:-14vw; right:-8vw}
+.orb.c{width:26vw; height:26vw; background:#0A9B72; top:48%; left:44%; opacity:.30}
+
+/* ---------- Deck mexanikasi ---------- */
+.deck{
+  position:fixed; inset:0; z-index:2;
+  display:flex;
+  will-change:transform;
+  transition:transform .78s cubic-bezier(.19,1,.22,1);
+  cursor:grab;
+}
+.deck.dragging{transition:none; cursor:grabbing}
+.deck.dragging *{user-select:none}
+.slide{
+  flex:0 0 100vw; width:100vw; height:100vh;
+  padding:clamp(70px,9vh,104px) clamp(20px,4.4vw,76px) clamp(64px,8vh,88px);
+  overflow-y:auto; overflow-x:hidden;
+  scrollbar-width:none;
+  display:block;
+  position:relative;
+}
+.slide::-webkit-scrollbar{display:none}
+.wrap{width:100%; max-width:1420px; margin:0 auto; min-height:100%;
+  display:flex; flex-direction:column; justify-content:center}
+.slide .wrap.split{display:grid; align-content:center}
+.slide .wrap.grid{display:grid; align-content:center}
+
+/* ---------- Kley komponentlari ---------- */
+.clay{
+  background:linear-gradient(150deg, var(--clay-hi), var(--clay-lo));
+  border-radius:var(--r-lg);
+  box-shadow:var(--shadow-clay);
+  position:relative;
+}
+.clay.green{
+  background:linear-gradient(150deg, var(--green-400), var(--green-600));
+  box-shadow:var(--shadow-green);
+  color:#04241A;
+}
+.clay.soft{--clay-hi:#153159; --clay-lo:#0C2043}
+.clay.dark{--clay-hi:#0C1F42; --clay-lo:#06152F}
+
+.pad{padding:clamp(18px,2vw,30px)}
+
+/* ---------- Tipografiya ---------- */
+h1,h2,h3,h4{font-family:var(--font-h); line-height:1.02; font-weight:800; letter-spacing:-.01em}
+.h1{font-size:clamp(2.4rem,5.4vw,5rem)}
+.h2{font-size:clamp(1.7rem,3.3vw,3rem); line-height:1.06}
+.h3{font-size:clamp(1.05rem,1.5vw,1.45rem); line-height:1.15}
+.h4{font-size:clamp(.98rem,1.15vw,1.12rem); font-weight:700}
+p{color:var(--muted); line-height:1.6; font-size:clamp(.84rem,1.02vw,1.02rem)}
+.lead{font-size:clamp(.95rem,1.25vw,1.24rem); color:#C6D6F2; line-height:1.55}
+.small{font-size:clamp(.7rem,.82vw,.84rem); color:var(--muted-2); line-height:1.5}
+.tiny{font-size:clamp(.62rem,.72vw,.75rem); color:var(--muted-2)}
+strong{color:var(--text)}
+.g-text{color:var(--green-400)}
+.a-text{color:var(--amber)}
+.c-text{color:var(--coral)}
+
+.kicker{
+  display:inline-flex; align-items:center; gap:.55rem;
+  font-family:var(--font-h); font-weight:700; font-size:clamp(.68rem,.82vw,.82rem);
+  letter-spacing:.16em; text-transform:uppercase;
+  color:var(--green-300);
+  padding:.5rem 1.05rem; border-radius:999px;
+  background:linear-gradient(150deg,#10305A,#0A1F40);
+  box-shadow:var(--shadow-clay-sm);
+  margin-bottom:clamp(12px,1.6vh,20px);
+}
+.kicker.amber{color:var(--amber)}
+.kicker.coral{color:var(--coral)}
+.kicker.sky{color:var(--sky)}
+
+.grad-text{
+  background:linear-gradient(100deg,var(--green-300),var(--green-500) 45%,var(--sky));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+
+/* ---------- Layout ---------- */
+.grid{display:grid; gap:clamp(12px,1.5vw,22px)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.split{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(16px,2.6vw,46px); align-items:center}
+.split.wide-left{grid-template-columns:1.25fr .75fr}
+.split.wide-right{grid-template-columns:.8fr 1.2fr}
+.row{display:flex; gap:clamp(8px,1vw,14px); flex-wrap:wrap; align-items:center}
+.stack{display:flex; flex-direction:column; gap:clamp(10px,1.5vh,20px)}
+.center{text-align:center}
+.mt-s{margin-top:clamp(8px,1.2vh,14px)}
+.mt-m{margin-top:clamp(14px,2.2vh,26px)}
+.mt-l{margin-top:clamp(20px,3.4vh,40px)}
+
+/* ---------- Kartalar ---------- */
+.card{padding:clamp(14px,1.6vw,24px); display:flex; flex-direction:column; gap:.5rem}
+.card .ico{
+  font-size:clamp(1.3rem,2vw,1.9rem); line-height:1;
+  width:clamp(42px,3.6vw,58px); height:clamp(42px,3.6vw,58px);
+  display:grid; place-items:center; border-radius:20px;
+  background:linear-gradient(150deg,#1B4271,#102B52);
+  box-shadow:var(--shadow-clay-sm); margin-bottom:.35rem;
+}
+.card.g-card .ico{background:linear-gradient(150deg,var(--green-400),var(--green-600)); box-shadow:var(--shadow-green)}
+.card p{font-size:clamp(.78rem,.94vw,.95rem)}
+
+.chip{
+  display:inline-flex; align-items:center; gap:.4rem;
+  font-size:clamp(.68rem,.8vw,.8rem); font-weight:700; font-family:var(--font-h);
+  padding:.4rem .82rem; border-radius:999px;
+  background:linear-gradient(150deg,#12305A,#0A1E3E);
+  box-shadow:var(--shadow-clay-sm); color:#CBDCF6;
+}
+.chip.g{color:#04241A; background:linear-gradient(150deg,var(--green-300),var(--green-500)); box-shadow:var(--shadow-green)}
+.chip.a{color:#3A2600; background:linear-gradient(150deg,#FFD787,var(--amber)); box-shadow:8px 8px 18px rgba(80,50,0,.45), inset 4px 4px 9px rgba(255,255,255,.45)}
+.chip.c{color:#3A0F08; background:linear-gradient(150deg,#FFB1A6,var(--coral)); box-shadow:8px 8px 18px rgba(80,20,10,.45), inset 4px 4px 9px rgba(255,255,255,.4)}
+.chip.big{font-size:clamp(.78rem,.92vw,.92rem); padding:.55rem 1.05rem}
+
+/* ---------- Tugmalar ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:.6rem;
+  font-family:var(--font-h); font-weight:700; font-size:clamp(.82rem,1vw,1rem);
+  padding:clamp(.7rem,1.1vh,1rem) clamp(1.1rem,1.8vw,1.8rem);
+  border-radius:999px; border:0; cursor:pointer;
+  color:#03241A; text-decoration:none;
+  background:linear-gradient(150deg,var(--green-300),var(--green-500));
+  box-shadow:var(--shadow-green);
+  transition:transform .18s ease, box-shadow .18s ease, filter .18s;
+}
+.btn:hover{filter:brightness(1.07); transform:translateY(-2px)}
+.btn:active{transform:translateY(3px) scale(.985); box-shadow:inset 6px 6px 14px rgba(0,60,40,.4), inset -5px -5px 12px rgba(255,255,255,.3)}
+.btn.ghost{
+  color:var(--text);
+  background:linear-gradient(150deg,#17365F,#0C2246);
+  box-shadow:var(--shadow-clay-sm);
+}
+.btn.ghost:active{box-shadow:inset 5px 5px 12px rgba(0,0,0,.5), inset -4px -4px 10px rgba(255,255,255,.09)}
+.btn.sm{font-size:clamp(.72rem,.86vw,.86rem); padding:.55rem 1.1rem}
+
+/* ---------- Rasmlar (clay frame) ---------- */
+.frame{
+  border-radius:var(--r-xl); overflow:hidden;
+  box-shadow:var(--shadow-clay);
+  background:linear-gradient(150deg,#133054,#0A1E3E);
+  padding:clamp(8px,.8vw,14px);
+}
+.frame img{border-radius:calc(var(--r-xl) - 10px); width:100%; height:100%; object-fit:cover}
+.frame.tall img{aspect-ratio:16/10}
+.img-hero{aspect-ratio:16/9}
+
+.floaty{animation:float 7s ease-in-out infinite}
+.floaty.d1{animation-delay:-2.2s}
+.floaty.d2{animation-delay:-4.4s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+/* ---------- Statistikalar ---------- */
+.stat{
+  padding:clamp(12px,1.4vw,20px); border-radius:var(--r-md);
+  background:linear-gradient(150deg,#12305A,#0A1E3E);
+  box-shadow:var(--shadow-clay-sm); text-align:center;
+}
+.stat .n{font-family:var(--font-h); font-weight:800; font-size:clamp(1.2rem,2.1vw,2rem); line-height:1; color:var(--green-300)}
+.stat .l{font-size:clamp(.66rem,.78vw,.78rem); color:var(--muted); margin-top:.4rem; display:block; line-height:1.35}
+.stat.amber .n{color:var(--amber)}
+.stat.coral .n{color:var(--coral)}
+
+/* ---------- Barlar / chart ---------- */
+.bar{height:clamp(9px,1.1vh,13px); border-radius:999px; background:#0A1E3E; box-shadow:inset 3px 3px 7px rgba(0,0,0,.6), inset -2px -2px 6px rgba(255,255,255,.05); overflow:hidden}
+.bar > i{display:block; height:100%; width:var(--w,50%); border-radius:999px; background:linear-gradient(90deg,var(--green-500),var(--green-300)); box-shadow:0 0 14px rgba(46,230,168,.55)}
+.bar.amber > i{background:linear-gradient(90deg,#E09A16,var(--amber)); box-shadow:0 0 14px rgba(255,194,75,.5)}
+.bar.sky > i{background:linear-gradient(90deg,#2C7BD6,var(--sky)); box-shadow:0 0 14px rgba(99,179,255,.5)}
+.bar-row{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,2.6fr) auto; gap:.8rem; align-items:center; font-size:clamp(.72rem,.88vw,.92rem)}
+.bar-row .val{font-family:var(--font-h); font-weight:700; color:var(--green-300); white-space:nowrap; font-size:clamp(.72rem,.86vw,.9rem)}
+
+.chart{display:flex; align-items:stretch; gap:clamp(8px,1.2vw,20px); height:clamp(150px,24vh,250px)}
+.chart .col{flex:1; display:grid; grid-template-rows:auto 1fr auto; justify-items:center; gap:.45rem; height:100%}
+.chart .cv{font-family:var(--font-h); font-weight:800; font-size:clamp(.64rem,.82vw,.9rem); color:var(--green-300); white-space:nowrap}
+.chart .stack-bar{width:100%; max-width:92px; height:100%; display:flex; flex-direction:column; justify-content:flex-end; align-self:stretch}
+.chart .fill{
+  width:100%; border-radius:20px 20px 14px 14px;
+  height:var(--h,20%); min-height:12px;
+  background:linear-gradient(160deg,var(--green-400),var(--green-600));
+  box-shadow:var(--shadow-green);
+  transition:height 1.05s cubic-bezier(.19,1,.22,1);
+}
+.chart .yl{font-size:clamp(.62rem,.74vw,.78rem); color:var(--muted); font-family:var(--font-h); font-weight:700; text-align:center; line-height:1.2}
+.chart .col:last-child .fill{background:linear-gradient(160deg,var(--green-300),var(--green-500)); box-shadow:0 0 26px rgba(46,230,168,.35), var(--shadow-green)}
+
+/* ---------- Rangli nuqtalar ---------- */
+.dot{width:11px; height:11px; border-radius:50%; display:inline-block; box-shadow:0 0 10px currentColor; background:currentColor}
+.dot.g{color:var(--green-400)} .dot.a{color:var(--amber)} .dot.c{color:var(--coral)} .dot.s{color:var(--sky)}
+
+.list{display:flex; flex-direction:column; gap:.55rem}
+.list li{list-style:none; display:flex; gap:.6rem; align-items:flex-start; font-size:clamp(.78rem,.94vw,.95rem); color:var(--muted); line-height:1.45}
+.list li b{color:var(--text); font-weight:700}
+.list li .tick{color:var(--green-400); font-weight:800; flex:none}
+
+/* ---------- Sarlavha paneli (topbar) ---------- */
+.topbar{
+  position:fixed; top:0; left:0; right:0; z-index:20;
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  padding:clamp(10px,1.8vh,20px) clamp(16px,3vw,44px);
+  pointer-events:none;
+}
+.topbar > *{pointer-events:auto}
+.brand{display:flex; align-items:center; gap:.7rem; font-family:var(--font-h); font-weight:800; font-size:clamp(.95rem,1.15vw,1.15rem)}
+.logo{
+  width:clamp(34px,2.6vw,42px); height:clamp(34px,2.6vw,42px); border-radius:14px;
+  display:grid; place-items:center; font-size:clamp(1rem,1.3vw,1.2rem);
+  background:linear-gradient(150deg,var(--green-300),var(--green-600)); box-shadow:var(--shadow-green);
+}
+.brand small{display:block; font-family:var(--font-b); font-weight:600; font-size:.62rem; color:var(--muted-2); letter-spacing:.09em; text-transform:uppercase}
+.tools{display:flex; align-items:center; gap:.5rem}
+.tool{
+  border:0; cursor:pointer; color:#CBDCF6; font-family:var(--font-h); font-weight:700;
+  font-size:clamp(.72rem,.84vw,.84rem);
+  padding:.5rem .9rem; border-radius:14px;
+  background:linear-gradient(150deg,#153159,#0B1F42);
+  box-shadow:var(--shadow-clay-sm);
+}
+.tool:hover{color:#fff}
+.tool:active{box-shadow:inset 4px 4px 10px rgba(0,0,0,.5)}
+.counter{font-family:var(--font-h); font-weight:700; font-size:clamp(.72rem,.84vw,.86rem); color:var(--muted)}
+.counter b{color:var(--green-300)}
+
+/* ---------- Navigatsiya ---------- */
+.nav-arrow{
+  position:fixed; top:50%; transform:translateY(-50%); z-index:20;
+  width:clamp(42px,3.4vw,56px); height:clamp(42px,3.4vw,56px); border:0; cursor:pointer;
+  border-radius:50%; display:grid; place-items:center;
+  font-size:clamp(1.1rem,1.6vw,1.5rem); color:var(--text); line-height:1;
+  background:linear-gradient(150deg,#17365F,#0B1F42);
+  box-shadow:var(--shadow-clay-sm);
+  opacity:.55; transition:opacity .25s, transform .18s;
+}
+.nav-arrow:hover{opacity:1}
+.nav-arrow:active{transform:translateY(-50%) scale(.94)}
+.nav-arrow.prev{left:clamp(8px,1.1vw,18px)}
+.nav-arrow.next{right:clamp(8px,1.1vw,18px)}
+.nav-arrow[disabled]{opacity:.14; cursor:default}
+
+.dots{
+  position:fixed; bottom:clamp(14px,2.6vh,26px); left:50%; transform:translateX(-50%);
+  z-index:20; display:flex; align-items:center; gap:.5rem;
+  padding:.55rem .9rem; border-radius:999px;
+  background:linear-gradient(150deg,rgba(19,48,84,.92),rgba(9,28,58,.92));
+  box-shadow:var(--shadow-clay-sm);
+  backdrop-filter:blur(8px);
+}
+.dots button{
+  width:clamp(7px,.62vw,10px); height:clamp(7px,.62vw,10px); border-radius:50%; border:0; cursor:pointer;
+  background:#3A5E92; box-shadow:inset 2px 2px 4px rgba(0,0,0,.5); transition:all .3s;
+}
+.dots button.on{width:clamp(20px,1.9vw,30px); border-radius:999px; background:linear-gradient(90deg,var(--green-400),var(--green-300)); box-shadow:0 0 14px rgba(46,230,168,.7)}
+.dots button:hover{background:var(--green-500)}
+
+.progress{position:fixed; left:0; right:0; bottom:0; height:3px; z-index:21; background:rgba(255,255,255,.05)}
+.progress span{display:block; height:100%; width:0; background:linear-gradient(90deg,var(--green-500),var(--green-300),var(--sky)); box-shadow:0 0 12px rgba(46,230,168,.8); transition:width .5s cubic-bezier(.19,1,.22,1)}
+
+.hint{
+  position:fixed; right:clamp(16px,3vw,44px); bottom:clamp(14px,2.6vh,26px); z-index:20;
+  font-size:.72rem; color:var(--muted-2); display:flex; align-items:center; gap:.5rem;
+  transition:opacity .6s; font-family:var(--font-h); font-weight:600;
+}
+.hint.gone{opacity:0}
+
+/* ---------- Telefon maketi (MVP mock) ---------- */
+.phone{
+  width:clamp(230px,20vw,300px); margin-inline:auto;
+  border-radius:38px; padding:clamp(10px,.9vw,14px);
+  background:linear-gradient(150deg,#1B4271,#0A1E3E);
+  box-shadow:var(--shadow-clay);
+}
+.screen{
+  border-radius:28px; padding:clamp(10px,1vw,15px); display:flex; flex-direction:column; gap:.5rem;
+  background:linear-gradient(165deg,#0B1E3F,#061229);
+  box-shadow:inset 4px 4px 12px rgba(0,0,0,.6), inset -3px -3px 10px rgba(255,255,255,.05);
+}
+.mini{padding:.5rem .6rem; border-radius:16px; background:linear-gradient(150deg,#133054,#0B2145); box-shadow:var(--shadow-clay-sm); font-size:.66rem; color:var(--muted)}
+.mini .t{font-family:var(--font-h); font-weight:700; color:var(--text); font-size:.74rem}
+.mini-row{display:flex; justify-content:space-between; align-items:center; gap:.4rem}
+.screen .bar-row{gap:.45rem; font-size:.6rem}
+.screen .bar-row .val{font-size:.58rem}
+.screen .bar{height:8px}
+
+/* ---------- SWOT ---------- */
+.swot{display:grid; grid-template-columns:1fr 1fr; gap:clamp(12px,1.5vw,20px)}
+.swot .q{padding:clamp(14px,1.5vw,22px); border-radius:var(--r-lg); box-shadow:var(--shadow-clay-sm); position:relative; overflow:hidden}
+.swot .q h4{font-size:clamp(.9rem,1.1vw,1.12rem); display:flex; align-items:center; gap:.5rem; margin-bottom:.5rem}
+.swot .q li{font-size:clamp(.72rem,.86vw,.88rem); color:#C2D3EE; line-height:1.45; list-style:none; display:block; position:relative; padding-left:1.35rem; margin-bottom:.42rem}
+.swot .q li .mk{position:absolute; left:0; top:0; font-weight:800}
+.swot .S{background:linear-gradient(150deg,#0F4B3C,#0A2E28); box-shadow:14px 14px 30px rgba(2,6,18,.55), inset 5px 5px 12px rgba(46,230,168,.18), inset -5px -5px 12px rgba(0,0,0,.3)}
+.swot .W{background:linear-gradient(150deg,#4A3211,#2E1E09); box-shadow:14px 14px 30px rgba(2,6,18,.55), inset 5px 5px 12px rgba(255,194,75,.18), inset -5px -5px 12px rgba(0,0,0,.3)}
+.swot .O{background:linear-gradient(150deg,#123C6B,#0C2444); box-shadow:14px 14px 30px rgba(2,6,18,.55), inset 5px 5px 12px rgba(99,179,255,.18), inset -5px -5px 12px rgba(0,0,0,.3)}
+.swot .T{background:linear-gradient(150deg,#4C211B,#2C120E); box-shadow:14px 14px 30px rgba(2,6,18,.55), inset 5px 5px 12px rgba(255,122,107,.18), inset -5px -5px 12px rgba(0,0,0,.3)}
+
+/* ---------- Jadval (raqobat) ---------- */
+.tbl{width:100%; border-collapse:separate; border-spacing:0 clamp(6px,.8vh,10px); font-size:clamp(.68rem,.84vw,.88rem)}
+.tbl th{
+  font-family:var(--font-h); font-weight:700; font-size:clamp(.66rem,.8vw,.84rem);
+  color:var(--muted); text-align:center; padding:.4rem .3rem;
+}
+.tbl th:first-child{text-align:left}
+.tbl td{padding:clamp(.42rem,.75vh,.7rem) .3rem; text-align:center; color:#C6D6F2; background:linear-gradient(150deg,#12305A,#0A1E3E); box-shadow:var(--shadow-clay-sm)}
+.tbl td:first-child{text-align:left; border-radius:16px 0 0 16px; font-weight:700; color:var(--text); padding-left:1rem; font-family:var(--font-h)}
+.tbl td:last-child{border-radius:0 16px 16px 0}
+.tbl-wrap{width:100%; overflow-x:auto; padding-bottom:4px}
+.tbl-wrap::-webkit-scrollbar{height:6px}
+.tbl-wrap::-webkit-scrollbar-thumb{background:#2A5088; border-radius:99px}
+.tbl{min-width:700px}
+.tbl th.col-us{color:var(--green-300)}
+.tbl td.us{background:linear-gradient(150deg,#0E9C6E,#0A7A57); color:#03241A; font-weight:800}
+.tbl td .yes{color:var(--green-400); font-weight:800}
+.tbl td .no{color:#6C82A6}
+.tbl td .mid{color:var(--amber)}
+
+/* ---------- Timeline ---------- */
+.tl{display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(10px,1.4vw,20px); position:relative}
+.tl .step{padding:clamp(13px,1.4vw,20px); border-radius:var(--r-lg); box-shadow:var(--shadow-clay-sm); background:linear-gradient(150deg,#133054,#0A1E3E); position:relative}
+.tl .step .q{font-family:var(--font-h); font-weight:800; font-size:clamp(.82rem,1vw,1.02rem); color:var(--green-300)}
+.tl .step ul{margin-top:.45rem}
+.tl .step li{list-style:none; font-size:clamp(.7rem,.84vw,.86rem); color:var(--muted); display:flex; gap:.4rem; margin-bottom:.28rem; line-height:1.4}
+.tl .step li::before{content:'▸'; color:var(--green-500); flex:none}
+
+.num{
+  font-family:var(--font-h); font-weight:800; line-height:1;
+  width:clamp(34px,2.6vw,44px); height:clamp(34px,2.6vw,44px); border-radius:14px;
+  display:grid; place-items:center; font-size:clamp(.9rem,1.2vw,1.15rem); color:#03241A;
+  background:linear-gradient(150deg,var(--green-300),var(--green-600)); box-shadow:var(--shadow-green); flex:none;
+}
+.step-line{display:flex; gap:.75rem; align-items:flex-start}
+
+/* ---------- QR ---------- */
+.qr{padding:clamp(8px,.8vw,12px); border-radius:26px; background:#fff; box-shadow:var(--shadow-clay-sm); width:clamp(90px,8vw,124px)}
+.qr img{border-radius:14px; width:100%}
+
+/* ---------- Print ---------- */
+@media print{
+  body{overflow:visible}
+  .topbar,.dots,.progress,.nav-arrow,.hint{display:none!important}
+  .deck{position:static; display:block; transform:none!important}
+  .slide{page-break-after:always; height:auto; width:100%; padding:2vh 4vw; overflow:visible}
+  @page{size:A4 landscape; margin:8mm}
+}
+@media (prefers-reduced-motion: reduce){
+  .deck{transition:none} .floaty{animation:none}
+}
+
+/* ---------- Responsiv ---------- */
+@media (max-width:1080px){
+  .split,.split.wide-left,.split.wide-right{grid-template-columns:1fr}
+  .g4{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:1fr 1fr}
+  .tl{grid-template-columns:1fr 1fr}
+  .slide{align-items:flex-start; padding-top:92px}
+}
+@media (max-width:680px){
+  .g2,.g3,.g4,.swot,.tl{grid-template-columns:1fr}
+  .nav-arrow{display:none}
+  .hint{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="bg">
+  <span class="orb a"></span><span class="orb b"></span><span class="orb c"></span>
+</div>
+
+<!-- ================= TOP BAR ================= -->
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">🧭</span>
+    <span>Travely<small>Know before you go</small></span>
+  </div>
+  <div class="tools">
+    <span class="counter"><b id="cur">01</b> / <span id="tot">13</span></span>
+    <button class="tool" id="btnFull" title="To'liq ekran (F)">⛶ To'liq ekran</button>
+    <button class="tool" id="btnPrint" title="PDF sifatida chiqarish">🖨️ PDF</button>
+  </div>
+</header>
+
+<!-- ================= DECK ================= -->
+<main class="deck" id="deck">
+
+  <!-- ============ 01 · COVER ============ -->
+  <section class="slide">
+    <div class="wrap split">
+      <div>
+        <span class="kicker">🧭 Investor pitch · 2026</span>
+        <h1 class="h1">Bilmasdan<br><span class="grad-text">bormang.</span></h1>
+        <p class="lead mt-s" style="max-width:56ch">
+          <strong>Travely</strong> — sayohatchilar uchun ishonch manbasi: scamlardan ogohlantirish,
+          haqiqiy odamlarning sharhlari, yashirin go'zal joylar, real kunlik narxlar va
+          <strong>offline ishlaydigan AI yordamchi</strong> — hammasi bitta joyda.
+        </p>
+        <div class="row mt-m">
+          <a class="btn" href="https://travely-smart-travel.lovable.app/" target="_blank" rel="noopener">🔴 Live MVP ni ko'rish</a>
+          <a class="btn ghost" href="#investitsiya">💼 $10 000 round</a>
+        </div>
+        <div class="grid g4 mt-l" style="max-width:640px">
+          <div class="stat"><span class="n">$4.99</span><span class="l">Pro / oy</span></div>
+          <div class="stat"><span class="n">8</span><span class="l">destinatsiya MVP da</span></div>
+          <div class="stat"><span class="n">82/100</span><span class="l">Trust Score (Istanbul)</span></div>
+          <div class="stat"><span class="n">1.5B</span><span class="l">xalqaro sayohatchi</span></div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div class="frame floaty"><img src="assets/hero.webp" alt="Travely clay illustration — sayohatchi va raqamli xarita" class="img-hero"></div>
+        <div class="row" style="justify-content:center">
+          <span class="chip g">🛡️ Scam Radar</span>
+          <span class="chip">⭐ Haqiqiy sharhlar</span>
+          <span class="chip a">🤖 Offline AI</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 · MUAMMO ============ -->
+  <section class="slide">
+    <div class="wrap">
+      <span class="kicker coral">01 · Muammo</span>
+      <h2 class="h2">Sayohatning eng katta xatosi — <span class="grad-text">tayyorlanmaslik</span></h2>
+      <p class="lead mt-s" style="max-width:88ch">
+        Sayohatchilar, ayniqsa <strong>boshlang'ich sayohatchilar</strong>, chet davlatga borib firibgarlikka uchraydi,
+        mashhur joylardagi tiqilinchda adashib qoladi va qancha pul sarflashini bilmaydi.
+        Bugungi platformalar <em>nima qilishni</em> aytadi — <strong>xavfni, narxni va odamlarning haqiqiy fikrini aytmaydi.</strong>
+      </p>
+
+      <div class="grid g4 mt-m">
+        <div class="clay card">
+          <span class="ico">🚕</span>
+          <h3 class="h3">Scam va firibgarlik</h3>
+          <p>Taksi hisoblagichini o'chirishi, ikki marta to'lov, qalbaki chipta, "bepul" turlar va soxta bron saytlari. Yangi sayohatchi — eng oson nishon.</p>
+        </div>
+        <div class="clay card">
+          <span class="ico">🧭</span>
+          <h3 class="h3">Adashish va tiqilinch</h3>
+          <p>Eng mashhur nuqtalarda navbat, shovqin va yo'l-yo'riq yo'qligi. Transport qanday ishlashini bilmaslik sayohat vaqtining katta qismini yeb qo'yadi.</p>
+        </div>
+        <div class="clay card">
+          <span class="ico">🤷</span>
+          <h3 class="h3">Ishonchsiz ma'lumot</h3>
+          <p>Sharhlar reklama bilan aralash. "Bu yer xavfsizmi?", "Narx to'g'rimi?", "Qaytib borasizmi?" — bu savollarga aniq javob beradigan joy yo'q.</p>
+        </div>
+        <div class="clay card">
+          <span class="ico">💸</span>
+          <h3 class="h3">Narx shaffof emas</h3>
+          <p>Kunlik byudjet, transport, ovqat xavfsizligi va yashirin to'lovlar tarqoq ma'lumotlar ichida yashiringan.</p>
+        </div>
+      </div>
+
+      <div class="clay dark pad mt-m">
+        <div class="grid g4" style="gap:clamp(10px,1.4vw,22px)">
+          <div class="stat coral"><span class="n">28%</span><span class="l">sayohatchi bron qilishda travel-scamga uchragan — <em>McAfee, 2024</em></span></div>
+          <div class="stat coral"><span class="n">55 000+</span><span class="l">travel-scam shikoyati, o'rtacha zarar ~$1 200 — <em>FTC, 2023</em></span></div>
+          <div class="stat amber"><span class="n">32%</span><span class="l">qurbon bitta scamda $501–$1 000 yo'qotgan — <em>McAfee, 2024</em></span></div>
+          <div class="stat amber"><span class="n">9.4M+</span><span class="l">5 yilda chet elda scamga uchragan sayohatchi — <em>GoCompare, 2024</em></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 · YECHIM ============ -->
+  <section class="slide">
+    <div class="wrap">
+      <div class="split wide-left">
+        <div>
+          <span class="kicker">02 · Yechim</span>
+          <h2 class="h2">Travely javobni <span class="grad-text">sayohatdan oldin</span> beradi</h2>
+          <p class="lead mt-s" style="max-width:60ch">
+            Biz yangi OTA emasmiz. Biz <strong>sayohat qarori</strong> qatlamimiz:
+            xavfsizlik, narx, odamlarning haqiqiy tajribasi va AI rejalashtirish — bitta toza platformada.
+            Maqsad: sayohatchi <em>"bilsam bo'lardi"</em> demasligi.
+          </p>
+          <div class="row mt-m">
+            <span class="chip g">🛡️ Scam Radar</span>
+            <span class="chip g">⭐ 7 kategoriyada sharh</span>
+            <span class="chip g">💰 Real narxlar</span>
+            <span class="chip g">✨ Hidden Gems</span>
+            <span class="chip g">💬 Ask Travelers</span>
+            <span class="chip g">🤖 Offline AI</span>
+          </div>
+        </div>
+        <div class="frame floaty d1" style="align-self:stretch"><img src="assets/scam-radar.webp" alt="Scam Radar" style="height:100%"></div>
+      </div>
+
+      <div class="grid g3 mt-m">
+        <div class="clay card g-card"><span class="ico">🛡️</span><h3 class="h3">Scam Radar</h3><p>Har bir shahar uchun xavf balli: taksi, to'lov, do'kon va chipta scamlari. Sayohatchilar xabar bergan real holatlar, jamoaviy tasdiqlangan signallar bilan.</p></div>
+        <div class="clay card g-card"><span class="ico">⭐</span><h3 class="h3">7 kategoriyada sharh</h3><p>Xavfsizlik, transport, ovqat xavfsizligi, narx, odamlar, madaniyat va eng muhimi — <strong>"yana borasizmi?"</strong>. Faqat yulduz emas, sabab ham.</p></div>
+        <div class="clay card g-card"><span class="ico">✨</span><h3 class="h3">Hidden Gems &amp; tiqilinch yechimi</h3><p>Mahalliy odamlar sevgan, ammo turist olomoni kam bo'lgan joylar — mashhur nuqtaning eng yaxshi holatida borish vaqti bilan birga.</p></div>
+        <div class="clay card g-card"><span class="ico">💰</span><h3 class="h3">Narx shaffofligi</h3><p>Kunlik byudjet (budget / standard / luxury), kofe, tushlik, taksi va mehmonxona narxlari — haqiqiy sayohatchilar hisobotlaridan.</p></div>
+        <div class="clay card g-card"><span class="ico">💬</span><h3 class="h3">Ask Travelers</h3><p>U yerga borgan odamlar yangi sayohatchilarning savollariga javob beradi. Jonli hamjamiyat — platformaning himoya qatlami.</p></div>
+        <div class="clay card g-card"><span class="ico">🤖</span><h3 class="h3">Personalised AI (Pro)</h3><p>Offline ishlaydigan shaxsiy yordamchi: kunlik marshrut, xarajat, xavfsizlik eslatmalari va <strong>deeper destination insights</strong>.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 · MVP ============ -->
+  <section class="slide">
+    <div class="wrap">
+      <span class="kicker sky">03 · Mahsulot / MVP</span>
+      <h2 class="h2">MVP <span class="g-text">tayyor va jonli</span> — bugun sinab ko'rish mumkin</h2>
+
+      <div class="split mt-m" style="align-items:center">
+        <div>
+          <div class="clay dark pad">
+            <p class="small" style="margin-bottom:.5rem">🔗 LIVE DEMO</p>
+            <a href="https://travely-smart-travel.lovable.app/" target="_blank" rel="noopener" style="font-family:var(--font-h); font-weight:800; font-size:clamp(.95rem,1.5vw,1.5rem); word-break:break-all">travely-smart-travel.lovable.app</a>
+            <div class="row mt-m">
+              <div class="qr"><img src="assets/qr-travely.png" alt="Travely QR kod"></div>
+              <div style="flex:1; min-width:170px">
+                <p class="small">Telefoningizda skanerlang —<br>to'liq ishlaydigan web-app ochiladi.</p>
+                <div class="row mt-s">
+                  <span class="chip">Web · mobil-birinchi</span>
+                  <span class="chip">8 destinatsiya</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid g2 mt-m">
+            <div class="clay card"><span class="ico">✅</span><h4 class="h4">Allaqachon ishlayapti</h4>
+              <ul class="list mt-s">
+                <li><span class="tick">✓</span>Davlat/shahar sahifalari: xavfsizlik, narx, sharhlar</li>
+                <li><span class="tick">✓</span>Scam Radar va Trending Traveler Warnings</li>
+                <li><span class="tick">✓</span>7 kategoriyali sharhlar + "yana borasizmi?"</li>
+                <li><span class="tick">✓</span>Hidden Gems, Ask Travelers, AI trip planner</li>
+                <li><span class="tick">✓</span>Travely Pro tarif sahifasi ($4.99/oy)</li>
+              </ul>
+            </div>
+            <div class="clay card"><span class="ico">🔜</span><h4 class="h4">Keyingi 2 sprint</h4>
+              <ul class="list mt-s">
+                <li><span class="tick" style="color:var(--amber)">→</span>Pro: to'lov tizimi (Stripe / Payme)</li>
+                <li><span class="tick" style="color:var(--amber)">→</span>Offline AI yordamchi (PWA + kesh)</li>
+                <li><span class="tick" style="color:var(--amber)">→</span>Chek/menyu narx skaneri</li>
+                <li><span class="tick" style="color:var(--amber)">→</span>30 davlatga kontent kengaytirish</li>
+                <li><span class="tick" style="color:var(--amber)">→</span>Mobil ilova (iOS / Android)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Telefon maketi -->
+        <div class="phone floaty">
+          <div class="screen">
+            <div class="mini">
+              <div class="mini-row"><span class="t">🇹🇷 Istanbul, Turkey</span><span style="color:#FFC24B">🟠 Caution</span></div>
+              <div class="mini-row" style="margin-top:.35rem"><span>⭐ 4.6/5</span><span>🛡️ Trust 82/100</span></div>
+              <div class="mini-row"><span>💰 $45–80 / kun</span><span>👥 12.4K sharh</span></div>
+            </div>
+            <div class="mini">
+              <div class="t" style="margin-bottom:.35rem">🛡️ Scam Radar</div>
+              <div class="bar-row" style="margin-bottom:.3rem"><span>🚕 Taksi</span><span class="bar amber" style="--w:82%"><i style="--w:82%"></i></span><span class="val c-text">High</span></div>
+              <div class="bar-row" style="margin-bottom:.3rem"><span>💳 To'lov</span><span class="bar amber" style="--w:48%"><i style="--w:48%"></i></span><span class="val a-text">Mid</span></div>
+              <div class="bar-row"><span>🎟️ Chipta</span><span class="bar" style="--w:20%"><i style="--w:20%"></i></span><span class="val">Low</span></div>
+            </div>
+            <div class="mini">
+              <div class="mini-row"><span class="t">Elena K. 🏅 Trusted</span><span style="color:#2EE6A8">★★★★★</span></div>
+              <p class="small" style="margin-top:.3rem">"Ovqat va atmosfera zo'r, transport oson. Lekin taksi narxini oldindan kelishib oling."</p>
+              <div class="mini-row" style="margin-top:.3rem"><span class="small">Yana borasizmi?</span><span class="chip g" style="font-size:.58rem; padding:.2rem .55rem">🟢 Ha</span></div>
+            </div>
+            <div class="mini" style="background:linear-gradient(150deg,#16C98D,#0A7A57); color:#04241A">
+              <div class="mini-row"><span class="t" style="color:#04241A">✨ Travely Pro</span><span style="font-family:var(--font-h); font-weight:800">$4.99/oy</span></div>
+              <p style="color:#04321F; font-size:.64rem; margin-top:.25rem">Offline AI yordamchi + deeper destination insights</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 · QANDAY ISHLAYDI ============ -->
+  <section class="slide">
+    <div class="wrap">
+      <span class="kicker">04 · Foydalanuvchi yo'li</span>
+      <h2 class="h2">4 qadamda <span class="grad-text">"bilmasdan bormang"</span></h2>
+
+      <div class="grid g4 mt-m">
+        <div class="clay card"><div class="step-line"><span class="num">1</span><h4 class="h4">Destinatsiyani qidir</h4></div><p style="margin-top:.5rem">Davlat va shahar sahifalari xavfsizlik, narx va sharhlarni bir joyga to'playdi.</p></div>
+        <div class="clay card"><div class="step-line"><span class="num">2</span><h4 class="h4">Xavfni tekshir</h4></div><p style="margin-top:.5rem">Scam Radar boshqa sayohatchilar aynan nima haqida xabar berganini ko'rsatadi.</p></div>
+        <div class="clay card"><div class="step-line"><span class="num">3</span><h4 class="h4">Narxni solishtir</h4></div><p style="margin-top:.5rem">Menyu yoki chekni to'lashdan oldin skanerlang — "ortiqcha to'layapmanmi?" javobi shu yerda.</p></div>
+        <div class="clay card"><div class="step-line"><span class="num">4</span><h4 class="h4">AI reja tuzsin</h4></div><p style="margin-top:.5rem">Kunlik marshrut, xarajat, xavfsizlik eslatmalari — internet bo'lmasa ham ishlaydi.</p></div>
+      </div>
+
+      <div class="split mt-m" style="align-items:center">
+        <div class="frame floaty d2"><img src="assets/community.webp" alt="Travely hamjamiyati — kley uslubidagi sayohatchilar" class="img-hero"></div>
+        <div>
+          <h3 class="h3">Travely 5 savolga javob beradi</h3>
+          <ul class="list mt-s">
+            <li><span class="tick">?</span><b>Xavfsizmi?</b> — Trust Score, Scam Radar, traveler alerts</li>
+            <li><span class="tick">?</span><b>Ortiqcha to'layapmanmi?</b> — real kunlik narxlar va chek skaneri</li>
+            <li><span class="tick">?</span><b>Haqiqiy sayohatchilar nima deydi?</b> — 7 kategoriyada tekshirilgan sharhlar</li>
+            <li><span class="tick">?</span><b>Nimalarni bilishim kerak?</b> — madaniyat, urf-odat, xavfsizlik qoidalari</li>
+            <li><span class="tick">?</span><b>Nima qilishim kerak?</b> — AI tomonidan tuzilgan shaxsiy reja</li>
+          </ul>
+          <div class="row mt-m">
+            <span class="chip g">Hamjamiyat = himoya qatlami</span>
+            <span class="chip">UGC flywheel</span>
+            <span class="chip a">Har bir hissa ma'lumotni yaxshilaydi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 · BIZNES MODEL ============ -->
+  <section class="slide">
+    <div class="wrap">
+      <span class="kicker">05 · Biznes model</span>
+      <h2 class="h2">Freemium + <span class="grad-text">$4.99/oy Pro</span> + B2B ma'lumot</h2>
+
+      <div class="grid g3 mt-m" style="align-items:stretch">
+        <div class="clay card">
+          <span class="ico">🆓</span>
+          <h3 class="h3">Free — abadiy bepul</h3>
+          <p>Asosiy hamma narsa ochiq: destinatsiya sahifalari, Scam Radar, Trust Score, sharhlar, Ask Travelers, Hidden Gems, kunlik byudjet.</p>
+          <p class="small mt-s">🎯 Maqsad: maksimal foydalanuvchi → kontent va tarmoq effekti (network effect) → Pro ga konversiya <strong>2–4%</strong>.</p>
+        </div>
+        <div class="clay green card">
+          <span class="ico" style="background:rgba(255,255,255,.35); box-shadow:none">💎</span>
+          <h3 class="h3" style="color:#03241A">Travely Pro — $4.99/oy</h3>
+          <ul class="list mt-s" style="--muted:#04321F">
+            <li style="color:#04321F"><span class="tick" style="color:#03241A">✓</span><b style="color:#03241A">Personalised AI yordamchi</b> — offline ishlaydi</li>
+            <li style="color:#04321F"><span class="tick" style="color:#03241A">✓</span><b style="color:#03241A">Deeper destination insights</b> — mahalla-mahalla</li>
+            <li style="color:#04321F"><span class="tick" style="color:#03241A">✓</span>Kengaytirilgan narx skaneri va solishtirish</li>
+            <li style="color:#04321F"><span class="tick" style="color:#03241A">✓</span>Offline qo'llanmalar va shaxsiy ogohlantirishlar</li>
+            <li style="color:#04321F"><span class="tick" style="color:#03241A">✓</span>Cheksiz AI rejalashtirish</li>
+          </ul>
+          <div class="row mt-s"><span class="chip" style="background:rgba(255,255,255,.45); color:#03241A; box-shadow:none">$39/yil (35% tejash)</span></div>
+        </div>
+        <div class="clay card">
+          <span class="ico">🏢</span>
+          <h3 class="h3">B2B &amp; affiliate (yil 2+)</h3>
+          <p><strong>API / ma'lumot litsenziyasi:</strong> mehmonxonalar, OTA, sug'urta va DMC'lar uchun xavfsizlik va narx signallari.</p>
+          <p><strong>Affiliate:</strong> bron, sug'urta, eSIM, transfer — foydalanuvchi uchun bepul, biz uchun komissiya.</p>
+          <p><strong>Destination marketing:</strong> turizm idoralari uchun tahlil va ko'rinish.</p>
+        </div>
+      </div>
+
+      <div class="clay dark pad mt-m">
+        <div class="grid g4" style="gap:clamp(10px,1.4vw,22px)">
+          <div class="stat"><span class="n">$4.99</span><span class="l">ARPU / oy (Pro)</span></div>
+          <div class="stat"><span class="n">~85%</span><span class="l">gross margin (SaaS + AI)</span></div>
+          <div class="stat"><span class="n">≥4</span><span class="l">maqsadli LTV / CAC nisbati</span></div>
+          <div class="stat"><span class="n">≈350</span><span class="l">Pro obunachi — operatsion breakeven</span></div>
+        </div>
+        <div class="grid g2 mt-m" style="align-items:center">
+          <div>
+            <p class="small" style="margin-bottom:.6rem">5-yildagi daromad tarkibi (maqsad)</p>
+            <div class="bar-row"><span>💎 Pro obuna</span><span class="bar" style="--w:70%"><i style="--w:70%"></i></span><span class="val">70%</span></div>
+            <div class="bar-row mt-s"><span>🏢 B2B / API</span><span class="bar sky" style="--w:20%"><i style="--w:20%"></i></span><span class="val" style="color:var(--sky)">20%</span></div>
+            <div class="bar-row mt-s"><span>🤝 Affiliate</span><span class="bar amber" style="--w:10%"><i style="--w:10%"></i></span><span class="val a-text">10%</span></div>
+          </div>
+          <div>
+            <p class="small" style="margin-bottom:.6rem">Oylik xarajat tuzilmasi (boshlang'ich)</p>
+            <div class="bar-row"><span>☁️ Infra &amp; hosting</span><span class="bar sky" style="--w:15%"><i style="--w:15%"></i></span><span class="val" style="color:var(--sky)">$250</span></div>
+            <div class="bar-row mt-s"><span>🤖 AI / LLM API</span><span class="bar sky" style="--w:26%"><i style="--w:26%"></i></span><span class="val" style="color:var(--sky)">$450</span></div>
+            <div class="bar-row mt-s"><span>✍️ Kontent &amp; hamjamiyat</span><span class="bar amber" style="--w:35%"><i style="--w:35%"></i></span><span class="val a-text">$600</span></div>
+            <div class="bar-row mt-s"><span>📣 Marketing</span><span class="bar amber" style="--w:24%"><i style="--w:24%"></i></span><span class="val a-text">$400</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07 · TAM SAM SOM ============ -->
+  <section class="slide">
+    <div class="wrap">
+      <span class="kicker">06 · Bozor hajmi</span>
+      <h2 class="h2">TAM · SAM · SOM</h2>
+      <p class="lead mt-s" style="max-width:80ch">Biz katta bozor ichida <strong>aniq bir bo'shliqni</strong> egallaymiz: sayohat <em>xavfsizligi, ishonchi va narx shaffofligi</em>. Bu — bron qilishdan oldingi qaror qatlami.</p>
+
+      <div class="split mt-m" style="align-items:center">
+        <div class="stack">
+          <div class="clay pad" style="border-radius:var(--r-xl); border-left:8px solid var(--green-400)">
+            <div class="row" style="justify-content:space-between">
+              <span class="chip g big">TAM</span>
+              <span class="h3" style="font-family:var(--font-h); font-weight:800; color:var(--green-300)">$622.6 mlrd</span>
+            </div>
+            <h4 class="h4 mt-s">Global online travel bozori</h4>
+            <p class="small">2025 → $1.44 trln (2034), CAGR 9.75%. Yiliga <strong>1.5 mlrd</strong> xalqaro sayohat va ularning hammasi qaror qabul qiladi.</p>
+          </div>
+          <div class="clay pad" style="border-radius:var(--r-xl); border-left:8px solid var(--sky)">
+            <div class="row" style="justify-content:space-between">
+              <span class="chip big" style="color:#0A2540; background:linear-gradient(150deg,#A9D6FF,var(--sky))">SAM</span>
+              <span class="h3" style="font-family:var(--font-h); font-weight:800; color:var(--sky)">$15.07 mlrd</span>
+            </div>
+            <h4 class="h4 mt-s">Travel planning, safety &amp; review apps</h4>
+            <p class="small">2025 → $38.5 mlrd (2035), CAGR 9.83%. Sayohatni <strong>rejalashtiruvchi, tekshiruvchi va baholovchi</strong> raqamli segment — aynan bizning o'yin maydonimiz.</p>
+          </div>
+          <div class="clay green pad" style="border-radius:var(--r-xl)">
+            <div class="row" style="justify-content:space-between">
+              <span class="chip big" style="background:rgba(255,255,255,.45); color:#03241A; box-shadow:none">SOM</span>
+              <span class="h3" style="font-family:var(--font-h); font-weight:800; color:#03241A">≈$19.5M ARR</span>
+            </div>
+            <h4 class="h4 mt-s" style="color:#03241A">5 yilda real egallanadigan bozor ulushi</h4>
+            <p class="small" style="color:#04321F">300 000 Pro obunachi + B2B/API daromadi = SAM ning <strong>~0.05%</strong>. Bu — juda konservativ, lekin biznesni foydali qiladigan hajm.</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="frame floaty"><img src="assets/market.webp" alt="Bozor o'sishi — kley globus va grafiklar" class="img-hero"></div>
+          <div class="clay dark pad mt-m">
+            <p class="small"><strong>Nega aynan hozir (Why now)?</strong></p>
+            <ul class="list mt-s">
+              <li><span class="tick">→</span>AI inference narxi keskin tushdi — shaxsiy yordamchi endi $5/oy tarifda foydali.</li>
+              <li><span class="tick">→</span>Sharhlarga ishonch inqirozi: reklama va soxta sharhlar fonida "haqiqiy odam" signali qimmatlashdi.</li>
+              <li><span class="tick">→</span>Osiyo va Markaziy Osiyoda sayohat oqimi rekord darajada o'smoqda — kontent hali sayoz.</li>
+              <li><span class="tick">→</span>Offline-first AI zaif internetli yo'nalishlarda haqiqiy raqobat ustunligi beradi.</li>
+            </ul>
+          </div>
+          <p class="tiny mt-s">Manbalar: IMARC (Online Travel Market, 2025–2034) · Market Research Intellect (Travel App Market, 2025–2035).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 08 · SWOT ============ -->
+  <section class="slide">
+    <div class="wrap">
+      <span class="kicker">07 · SWOT tahlil</span>
+      <h2 class="h2">Kuchli tomonlar, zaif joylar, <span class="grad-text">imkoniyat va xavflar</span></h2>
+
+      <div class="swot mt-m">
+        <div class="q S">
+          <h4><span class="chip g" style="padding:.2rem .6rem">S</span> Strengths — kuchli tomonlar</h4>
+          <ul>
+            <li><span class="mk">✔</span> Scam Radar — bozorda deyarli hech kim qilmagan aniq pozitsiya</li>
+            <li><span class="mk">✔</span> Real UGC: "yana borasizmi?" signali + 7 kategoriyali sharh</li>
+            <li><span class="mk">✔</span> Offline ishlaydigan AI yordamchi (raqobatchilarda yo'q)</li>
+            <li><span class="mk">✔</span> MVP jonli va arzon: web-first, $10K bilan boshqarilishi mumkin bo'lgan xarajat</li>
+            <li><span class="mk">✔</span> $4.99 narx — rivojlanayotgan bozorlar uchun real to'lanadigan</li>
+          </ul>
+        </div>
+        <div class="q W">
+          <h4><span class="chip a" style="padding:.2rem .6rem">W</span> Weaknesses — zaif joylar</h4>
+          <ul>
+            <li><span class="mk">✖</span> Kontent bazasi hali kichik (8 destinatsiya) — kritik massa kerak</li>
+            <li><span class="mk">✖</span> Brend hali tanilmagan; jamoaviy resurs cheklangan</li>
+            <li><span class="mk">✖</span> Monetizatsiya yangi: konversiya hali isbotlanmagan</li>
+            <li><span class="mk">✖</span> LLM/API xarajatiga bog'liqlik — margin bosimi</li>
+            <li><span class="mk">✖</span> Moderatsiya va ma'lumot sifatiga doimiy sarmoya talab qilinadi</li>
+          </ul>
+        </div>
+        <div class="q O">
+          <h4><span class="chip" style="padding:.2rem .6rem; color:#0A2540; background:linear-gradient(150deg,#A9D6FF,var(--sky))">O</span> Opportunities — imkoniyatlar</h4>
+          <ul>
+            <li><span class="mk">↑</span> 1.5 mlrd sayohatchi; sayohat soni rekord darajada o'smoqda</li>
+            <li><span class="mk">↑</span> OTA va sug'urta kompaniyalari uchun xavfsizlik ma'lumoti = B2B daromad</li>
+            <li><span class="mk">↑</span> Zaif internetli yo'nalishlar uchun offline-first yechim</li>
+            <li><span class="mk">↑</span> Yangi tillar (o'zbek, rus, turk, arab) — bo'sh bozorlar</li>
+            <li><span class="mk">↑</span> Narx skaneri → e-commerce/affiliate kengaytmasi</li>
+          </ul>
+        </div>
+        <div class="q T">
+          <h4><span class="chip c" style="padding:.2rem .6rem">T</span> Threats — xavflar</h4>
+          <ul>
+            <li><span class="mk">⚠</span> Tripadvisor, Google Maps, Booking — katta o'yinchilar bosimi</li>
+            <li><span class="mk">⚠</span> AI qidiruv (ChatGPT/Gemini) oraliq platformalarni "yeb" qo'yishi mumkin</li>
+            <li><span class="mk">⚠</span> Soxta sharh va reyting manipulyatsiyasi — ishonch xavfi</li>
+            <li><span class="mk">⚠</span> Xavfsizlik bo'yicha da'volar uchun yuridik javobgarlik</li>
+            <li><span class="mk">⚠</span> Kontent yig'ish va moderatsiya xarajatining o'sishi</li>
+          </ul>
+        </div>
+      </div>
+      <p class="tiny mt-s">Strategiya: S+O — Scam Radar ma'lumotini B2B mahsulotga aylantirish, shu bilan zaif tomonlarni (kontent, brend) moliyalashtirish.</p>
+    </div>
+  </section>
+
+  <!-- ============ 09 · RAQOBAT ============ -->
+  <section class="slide">
+    <div class="wrap">
+      <span class="kicker">08 · Raqobat</span>
+      <h2 class="h2">Ular <em>qayerga borishni</em> aytadi. Travely — <span class="grad-text">borishdan oldin nimani bilishni</span>.</h2>
+
+      <div class="tbl-wrap">
+      <table class="tbl mt-m">
+        <thead>
+          <tr>
+            <th>Mezon</th>
+            <th>Tripadvisor</th>
+            <th>Google Maps</th>
+            <th>Booking / OTA</th>
+            <th>ChatGPT</th>
+            <th class="col-us">Travely</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Scam ogohlantirishlari (real vaqt)</td>
+            <td class="no">✖</td><td class="no">✖</td><td class="no">✖</td><td class="mid">~</td><td class="us">✔ Scam Radar</td>
+          </tr>
+          <tr>
+            <td>"Yana borasizmi?" signali</td>
+            <td class="no">✖</td><td class="no">✖</td><td class="no">✖</td><td class="no">✖</td><td class="us">✔ Asosiy metrika</td>
+          </tr>
+          <tr>
+            <td>Tiqilinchdan qochish / hidden gems</td>
+            <td class="mid">Qisman</td><td class="mid">Qisman</td><td class="no">✖</td><td class="mid">Qisman</td><td class="us">✔ Mahalliy sevimlilar</td>
+          </tr>
+          <tr>
+            <td>Offline AI yordamchi</td>
+            <td class="no">✖</td><td class="mid">Xarita</td><td class="no">✖</td><td class="no">✖</td><td class="us">✔ Offline-first</td>
+          </tr>
+          <tr>
+            <td>Hamjamiyat savol-javobi (borganlarga)</td>
+            <td class="mid">Forum</td><td class="no">✖</td><td class="no">✖</td><td class="mid">AI javob</td><td class="us">✔ Ask Travelers</td>
+          </tr>
+          <tr>
+            <td>Real kunlik byudjet / narx skaneri</td>
+            <td class="mid">Qisman</td><td class="no">✖</td><td class="no">✖</td><td class="mid">Taxminiy</td><td class="us">✔ Chek skaneri</td>
+          </tr>
+          <tr>
+            <td>Narx (oylik)</td>
+            <td class="no">Reklama</td><td class="no">Bepul*</td><td class="no">Komissiya</td><td class="no">$20+</td><td class="us">✔ $4.99</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="grid g3 mt-m">
+        <div class="clay card"><span class="ico">🎯</span><h4 class="h4">Pozitsiya</h4><p>Biz OTA'lar bilan urushmaymiz — ularning <strong>oldidagi qaror qatlami</strong> bo'lamiz va trafikni ularga ham yuboramiz (affiliate).</p></div>
+        <div class="clay card"><span class="ico">🔐</span><h4 class="h4">Himoya (moat)</h4><p>Yillar davomida to'planadigan, mahalliy tasdiqlangan <strong>xavfsizlik va narx ma'lumoti</strong> — nusxalash qiyin.</p></div>
+        <div class="clay card"><span class="ico">⚡</span><h4 class="h4">Tezlik</h4><p>Web-first MVP tufayli yangi shahar/yo'nalishni <strong>kunlar ichida</strong> qo'shamiz — katta kompaniyalar uchun bu choraklar ishi.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10 · INVESTITSIYA ============ -->
+  <section class="slide" id="investitsiya">
+    <div class="wrap">
+      <div class="split wide-left">
+        <div>
+          <span class="kicker amber">09 · Investitsiya taklifi</span>
+          <h2 class="h2">$10 000 — <span class="grad-text">12 oylik yo'l xaritasi</span></h2>
+          <p class="lead mt-s" style="max-width:64ch">
+            Taklif: <strong>$10 000</strong> pre-seed/bootstrap round. Mablag' mahsulotni Pro darajaga chiqarish,
+            30 davlatga kontent yig'ish va birinchi 2 000 to'lovchi obunachini olishga sarflanadi.
+            MVP allaqachon jonli — pul g'oyaga emas, <strong>o'sishga</strong> ketadi.
+          </p>
+          <div class="row mt-m">
+            <span class="chip a big">💰 $10 000 round</span>
+            <span class="chip">12 oy runway</span>
+            <span class="chip">Equity / konvertibeli nota — muzokaraga ochiq</span>
+          </div>
+
+          <div class="grid g3 mt-m">
+            <div class="stat"><span class="n">100K</span><span class="l">MAU — 12 oydan keyin</span></div>
+            <div class="stat"><span class="n">2 000</span><span class="l">Pro obunachi</span></div>
+            <div class="stat"><span class="n">~$96K</span><span class="l">yillik takrorlanuvchi daromad (ARR)</span></div>
+          </div>
+
+          <div class="clay dark pad mt-m">
+            <p class="small"><strong>Investorga:</strong> oylik progress hisoboti, mahsulot ko'rsatkichlari (MAU, konversiya, retention D30), xarajatlar shaffofligi va keyingi bosqichda birinchi chiqish huquqi (pro-rata).</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="clay pad">
+            <h3 class="h3">Mablag' taqsimoti</h3>
+            <div class="mt-m" style="display:flex; flex-direction:column; gap:.85rem">
+              <div class="bar-row"><span>💻 Product &amp; AI</span><span class="bar" style="--w:40%"><i style="--w:40%"></i></span><span class="val">$4 000</span></div>
+              <div class="bar-row"><span>✍️ Kontent &amp; hamjamiyat</span><span class="bar sky" style="--w:25%"><i style="--w:25%"></i></span><span class="val" style="color:var(--sky)">$2 500</span></div>
+              <div class="bar-row"><span>📣 Marketing &amp; o'sish</span><span class="bar amber" style="--w:20%"><i style="--w:20%"></i></span><span class="val a-text">$2 000</span></div>
+              <div class="bar-row"><span>☁️ Infra, AI API, xarita</span><span class="bar sky" style="--w:10%"><i style="--w:10%"></i></span><span class="val" style="color:var(--sky)">$1 000</span></div>
+              <div class="bar-row"><span>⚖️ Yuridik &amp; ro'yxatdan o'tish</span><span class="bar amber" style="--w:5%"><i style="--w:5%"></i></span><span class="val a-text">$500</span></div>
+            </div>
+
+            <div class="clay dark pad mt-m">
+              <p class="small" style="margin-bottom:.6rem"><strong>Pul nimani sotib oladi?</strong></p>
+              <ul class="list">
+                <li><span class="tick">→</span>30 davlat va 120 shahar uchun professional Scam Radar kontenti</li>
+                <li><span class="tick">→</span>Pro to'lov tizimi + offline AI yordamchi (ishlab chiqarish versiyasi)</li>
+                <li><span class="tick">→</span>Hamjamiyat moderatsiyasi va dastlabki 500 "Trusted Contributor"</li>
+                <li><span class="tick">→</span>Instagram / TikTok / YouTube creator'lar orqali birinchi trafik to'lqini</li>
+                <li><span class="tick">→</span>App Store va Google Play nashri</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 11 · 5 YILLIK REJA ============ -->
+  <section class="slide">
+    <div class="wrap">
+      <span class="kicker">10 · 5 yillik reja</span>
+      <h2 class="h2">2026 → 2030: <span class="grad-text">$96K dan $19.5M ARR ga</span></h2>
+
+      <div class="split wide-left mt-m" style="align-items:flex-start">
+        <div>
+          <div class="chart" id="chart">
+            <div class="col">
+              <span class="cv">$96K</span>
+              <div class="stack-bar"><div class="fill" style="--h:8%"></div></div>
+              <span class="yl">2026<br>Y1</span>
+            </div>
+            <div class="col">
+              <span class="cv">$0.65M</span>
+              <div class="stack-bar"><div class="fill" style="--h:20%"></div></div>
+              <span class="yl">2027<br>Y2</span>
+            </div>
+            <div class="col">
+              <span class="cv">$2.7M</span>
+              <div class="stack-bar"><div class="fill" style="--h:38%"></div></div>
+              <span class="yl">2028<br>Y3</span>
+            </div>
+            <div class="col">
+              <span class="cv">$7.5M</span>
+              <div class="stack-bar"><div class="fill" style="--h:62%"></div></div>
+              <span class="yl">2029<br>Y4</span>
+            </div>
+            <div class="col">
+              <span class="cv">$19.5M</span>
+              <div class="stack-bar"><div class="fill" style="--h:94%"></div></div>
+              <span class="yl">2030<br>Y5</span>
+            </div>
+          </div>
+          </div>
+          <p class="tiny mt-s center">ARR o'sish prognozi (Pro obuna + B2B/API). Konservativ stsenariy.</p>
+        </div>
+
+        <div class="stack" style="gap:.8rem">
+          <div class="clay card" style="padding:1rem 1.2rem">
+            <div class="row" style="justify-content:space-between"><h4 class="h4">🚀 2026 · Y1 — Poydevor</h4><span class="chip g">$96K ARR</span></div>
+            <p class="small mt-s">Scam Radar va Pro ishga tushadi · 30 davlat kontenti · 100K MAU · 2 000 Pro obunachi · mobil ilova nashri.</p>
+          </div>
+          <div class="clay card" style="padding:1rem 1.2rem">
+            <div class="row" style="justify-content:space-between"><h4 class="h4">🤖 2027 · Y2 — Offline AI</h4><span class="chip g">$0.65M ARR</span></div>
+            <p class="small mt-s">To'liq offline AI yordamchi va 15 til · 500K MAU · 12 000 Pro · birinchi B2B pilotlar (mehmonxona zanjiri).</p>
+          </div>
+          <div class="clay card" style="padding:1rem 1.2rem">
+            <div class="row" style="justify-content:space-between"><h4 class="h4">🏢 2028 · Y3 — B2B qatlami</h4><span class="chip g">$2.7M ARR</span></div>
+            <p class="small mt-s">API litsenziyasi (OTA, sug'urta, DMC) · narx skaneri · 1.5M MAU · 45 000 Pro · 60 davlat.</p>
+          </div>
+          <div class="clay card" style="padding:1rem 1.2rem">
+            <div class="row" style="justify-content:space-between"><h4 class="h4">🌍 2029 · Y4 — Miqyos</h4><span class="chip g">$7.5M ARR</span></div>
+            <p class="small mt-s">AI personalizatsiya 2.0 · hamjamiyat monetizatsiyasi · 4M MAU · 120 000 Pro · kuchli brand marketing.</p>
+          </div>
+          <div class="clay green card" style="padding:1rem 1.2rem">
+            <div class="row" style="justify-content:space-between"><h4 class="h4" style="color:#03241A">🏆 2030 · Y5 — Global o'yinchi</h4><span class="chip" style="background:rgba(255,255,255,.45); color:#03241A; box-shadow:none">$19.5M ARR</span></div>
+            <p class="small mt-s" style="color:#04321F">80 davlat · 10M MAU · 300 000 Pro obunachi · B2B daromadi umumiy tushumning 20% i · foydali operatsiya.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 12 · 12 OYLIK YO'L XARITASI ============ -->
+  <section class="slide">
+    <div class="wrap">
+      <span class="kicker">11 · Yo'l xaritasi</span>
+      <h2 class="h2">Investitsiyadan keyingi <span class="grad-text">birinchi 12 oy</span></h2>
+
+      <div class="tl mt-m">
+        <div class="step">
+          <div class="add"><span class="chip g">Q1 · 1–3 oy</span></div>
+          <h4 class="h4 mt-s">Pul va asos</h4>
+          <ul>
+            <li>Stripe / Payme integratsiyasi — Pro to'lovga tayyor</li>
+            <li>15 davlatga kontent jamoasi yig'ish</li>
+            <li>Analitika, moderatsiya va onboardingga asos solish</li>
+          </ul>
+        </div>
+        <div class="step">
+          <div><span class="chip g">Q2 · 4–6 oy</span></div>
+          <h4 class="h4 mt-s">Offline AI</h4>
+          <ul>
+            <li>Personalised AI yordamchi beta (offline kesh bilan)</li>
+            <li>Deeper destination insights: mahalla darajasidagi tahlil</li>
+            <li>500 "Trusted Contributor" dasturi</li>
+          </ul>
+        </div>
+        <div class="step">
+          <div><span class="chip g">Q3 · 7–9 oy</span></div>
+          <h4 class="h4 mt-s">O'sish to'lqini</h4>
+          <ul>
+            <li>Creator hamkorliklari: TikTok / IG / YouTube Reels</li>
+            <li>30 davlat, 120 shahar; to'liq 5 tilda interfeys</li>
+            <li>Narx skaneri (menyu va chek) yopiq beta</li>
+          </ul>
+        </div>
+        <div class="step">
+          <div><span class="chip g">Q4 · 10–12 oy</span></div>
+          <h4 class="h4 mt-s">Miqyos va keyingi raund</h4>
+          <ul>
+            <li>Mobil ilova nashri (App Store + Google Play)</li>
+            <li>100K MAU va 2 000 Pro obunachi maqsadi</li>
+            <li>Ma'lumotlar bilan $250K–$500K seed raundga tayyorgarlik</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid g4 mt-m">
+        <div class="stat"><span class="n">D30 ≥ 35%</span><span class="l">obunachilarni ushlab qolish maqsadi</span></div>
+        <div class="stat"><span class="n">2–4%</span><span class="l">Free → Pro konversiya</span></div>
+        <div class="stat"><span class="n">≤ $1.5</span><span class="l">CAC (organik + creator)</span></div>
+        <div class="stat"><span class="n">≥ 1000</span><span class="l">hamjamiyat hissasi (sharh/savol) — har oy</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 13 · CLOSING ============ -->
+  <section class="slide">
+    <div class="wrap split">
+      <div>
+        <span class="kicker">12 · Xulosa</span>
+        <h2 class="h1">Har sayohatchi bilishga haqli:<br><span class="grad-text">"meni nima kutmoqda?"</span></h2>
+        <p class="lead mt-s" style="max-width:56ch">
+          Travely bu savolga javob beradi — <strong>scamlar</strong>, <strong>haqiqiy sharhlar</strong>,
+          <strong>real narxlar</strong>, <strong>yashirin go'zal joylar</strong> va <strong>offline AI</strong> orqali.
+          Mahsulot tayyor. Endi miqyosga chiqish kerak.
+        </p>
+
+        <div class="clay pad mt-m" style="display:inline-block">
+          <div class="row" style="justify-content:space-between; gap:1.4rem">
+            <div>
+              <p class="small">So'ralayotgan investitsiya</p>
+              <p style="font-family:var(--font-h); font-weight:800; font-size:clamp(1.4rem,2.4vw,2.2rem); color:var(--green-300); line-height:1.1">$10 000</p>
+            </div>
+            <div style="width:1px; align-self:stretch; background:linear-gradient(180deg,transparent,rgba(120,190,255,.35),transparent)"></div>
+            <div>
+              <p class="small">12 oydan keyin</p>
+              <p style="font-family:var(--font-h); font-weight:800; font-size:clamp(1.4rem,2.4vw,2.2rem); color:var(--sky); line-height:1.1">~$96K ARR</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-m">
+          <a class="btn" href="https://travely-smart-travel.lovable.app/" target="_blank" rel="noopener">🌐 Live MVP ni ochish</a>
+          <span class="chip big">✉️ hello@travely.app</span>
+          <span class="chip big">📩 @travely</span>
+        </div>
+        <p class="tiny mt-m">Travely · Know before you go · 2026 · Ushbu deckdagi moliyaviy prognozlar maqsadli (target) ko'rsatkichlar bo'lib, kafolat emas.</p>
+      </div>
+
+      <div class="stack center">
+        <div class="frame floaty d1"><img src="assets/ai-assistant.webp" alt="Travely AI yordamchi" class="img-hero"></div>
+        <div class="clay pad" style="display:flex; gap:1rem; align-items:center; justify-content:center; flex-wrap:wrap">
+          <div class="qr"><img src="assets/qr-travely.png" alt="Travely QR kod"></div>
+          <div style="text-align:left">
+            <p class="small"><strong>Keling, birga quramiz.</strong></p>
+            <p class="small">Skanerlang yoki shunchaki tugmani bosing —</p>
+            <a class="btn sm mt-s" href="https://travely-smart-travel.lovable.app/" target="_blank" rel="noopener">🔴 travely-smart-travel.lovable.app</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= NAV ================= -->
+<button class="nav-arrow prev" id="prev" aria-label="Oldingi slayd">‹</button>
+<button class="nav-arrow next" id="next" aria-label="Keyingi slayd">›</button>
+<nav class="dots" id="dots" aria-label="Slaydlar"></nav>
+<div class="progress"><span id="bar"></span></div>
+<div class="hint" id="hint">⟵ ⟶ tugmalar · sichqoncha bilan torting · <b>F</b> — to'liq ekran</div>
+
+<script>
+(function(){
+  const deck   = document.getElementById('deck');
+  const slides = Array.from(deck.querySelectorAll('.slide'));
+  const dotsEl = document.getElementById('dots');
+  const bar    = document.getElementById('bar');
+  const cur    = document.getElementById('cur');
+  const tot    = document.getElementById('tot');
+  const btnP   = document.getElementById('prev');
+  const btnN   = document.getElementById('next');
+  const hint   = document.getElementById('hint');
+
+  let i = 0, n = slides.length, dragging = false, startX = 0, startY = 0, dx = 0, axis = null;
+  const pad = v => String(v).padStart(2,'0');
+  tot.textContent = pad(n);
+
+  /* ---- dots ---- */
+  slides.forEach((s, k) => {
+    const b = document.createElement('button');
+    b.setAttribute('aria-label', 'Slayd ' + (k+1));
+    b.addEventListener('click', () => go(k));
+    dotsEl.appendChild(b);
+  });
+  const dots = Array.from(dotsEl.children);
+
+  function go(k, animate = true, dir){
+    i = Math.max(0, Math.min(n - 1, k));
+    if(!animate) deck.classList.add('dragging');
+    deck.style.transform = 'translate3d(' + (-i * 100) + 'vw,0,0)';
+    if(!animate) requestAnimationFrame(() => requestAnimationFrame(() => deck.classList.remove('dragging')));
+    // reset scroll of the newly visible slide
+    slides[i].scrollTop = Math.min(slides[i].scrollTop, 4);
+    dots.forEach((d, k2) => d.classList.toggle('on', k2 === i));
+    cur.textContent = pad(i + 1);
+    bar.style.width = ((i) / (n - 1) * 100) + '%';
+    btnP.disabled = i === 0; btnN.disabled = i === n - 1;
+  }
+  function next(){ if(i < n - 1) go(i + 1); }
+  function prev(){ if(i > 0) go(i - 1); }
+
+  btnN.addEventListener('click', next);
+  btnP.addEventListener('click', prev);
+
+  /* ---- keyboard ---- */
+  document.addEventListener('keydown', e => {
+    if(['ArrowRight','PageDown',' '].includes(e.key)){ e.preventDefault(); next(); }
+    else if(['ArrowLeft','PageUp'].includes(e.key)){ e.preventDefault(); prev(); }
+    else if(e.key === 'Home'){ e.preventDefault(); go(0); }
+    else if(e.key === 'End'){ e.preventDefault(); go(n - 1); }
+    else if(e.key === 'f' || e.key === 'F'){ toggleFull(); }
+    hideHint();
+  });
+
+  /* ---- wheel (throttled) ---- */
+  let lock = 0;
+  deck.addEventListener('wheel', e => {
+    const sl = slides[i];
+    const canScroll = sl.scrollHeight - sl.clientHeight > 8;
+    if(canScroll){
+      const atTop = sl.scrollTop <= 1;
+      const atBottom = sl.scrollTop + sl.clientHeight >= sl.scrollHeight - 2;
+      if((e.deltaY > 0 && !atBottom) || (e.deltaY < 0 && !atTop)) return;
+    }
+    e.preventDefault();
+    const now = Date.now();
+    if(now - lock < 620) return;
+    if(Math.abs(e.deltaY) < 12 && Math.abs(e.deltaX) < 12) return;
+    lock = now;
+    (e.deltaY > 0 || e.deltaX > 0) ? next() : prev();
+    hideHint();
+  }, { passive:false });
+
+  /* ---- drag / swipe ---- */
+  const stage = document.getElementById('deck');
+  stage.addEventListener('pointerdown', e => {
+    if(e.target.closest('a, button, .tbl, input')) return;
+    if(e.pointerType === 'touch') return;         // touch handled below
+    dragging = true; axis = null; dx = 0; startX = e.clientX; startY = e.clientY;
+    deck.classList.add('dragging');
+  });
+  window.addEventListener('pointermove', e => {
+    if(!dragging) return;
+    const mx = e.clientX - startX, my = e.clientY - startY;
+    if(axis === null && (Math.abs(mx) > 6 || Math.abs(my) > 6)) axis = Math.abs(mx) > Math.abs(my) ? 'x' : 'y';
+    if(axis !== 'x') return;
+    dx = mx;
+    deck.style.transform = 'translate3d(calc(' + (-i * 100) + 'vw + ' + dx + 'px),0,0)';
+  });
+  window.addEventListener('pointerup', () => {
+    if(!dragging) return;
+    dragging = false;
+    deck.classList.remove('dragging');
+    const w = window.innerWidth;
+    if(Math.abs(dx) > w * 0.14 || Math.abs(dx) > 170){ dx < 0 ? next() : prev(); }
+    else go(i, false);
+    dx = 0;
+    hideHint();
+  });
+  window.addEventListener('pointercancel', () => { if(dragging){ dragging = false; deck.classList.remove('dragging'); go(i,false); }});
+
+  /* ---- touch swipe ---- */
+  let tsx = 0, tsy = 0, touching = false, tdx = 0;
+  deck.addEventListener('touchstart', e => {
+    if(e.target.closest('a, button')) return;
+    const t = e.touches[0];
+    tsx = t.clientX; tsy = t.clientY; tdx = 0; touching = true;
+    deck.style.transition = 'none';
+  }, { passive:true });
+  deck.addEventListener('touchmove', e => {
+    if(!touching) return;
+    const t = e.touches[0];
+    const mx = t.clientX - tsx, my = t.clientY - tsy;
+    if(Math.abs(my) > Math.abs(mx) + 4) return;    // vertical scroll wins
+    tdx = mx;
+    deck.style.transform = 'translate3d(calc(' + (-i * 100) + 'vw + ' + tdx + 'px),0,0)';
+  }, { passive:true });
+  deck.addEventListener('touchend', () => {
+    if(!touching) return; touching = false;
+    deck.style.transition = '';
+    const w = window.innerWidth;
+    if(Math.abs(tdx) > w * 0.16) { tdx < 0 ? next() : prev(); } else { go(i, false); }
+    tdx = 0; hideHint();
+  }, { passive:true });
+
+  /* ---- in-page anchors (#investitsiya) ---- */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href').slice(1);
+      const k = slides.findIndex(s => s.id === id);
+      if(k > -1){ e.preventDefault(); go(k); hideHint(); }
+    });
+  });
+
+  /* ---- fullscreen / print ---- */
+  function toggleFull(){
+    if(!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+    else document.exitFullscreen?.();
+  }
+  document.getElementById('btnFull').addEventListener('click', toggleFull);
+  document.getElementById('btnPrint').addEventListener('click', () => window.print());
+
+  /* ---- hint ---- */
+  let hintTimer = setTimeout(() => hint.classList.add('gone'), 7000);
+  function hideHint(){ clearTimeout(hintTimer); hint.classList.add('gone'); }
+
+  /* ---- hash deep-link (#investitsiya) ---- */
+  const hash = location.hash.slice(1);
+  if(hash){
+    const idx = slides.findIndex(s => s.id === hash);
+    if(idx > -1) i = idx;
+  }
+  requestAnimationFrame(() => { go(i, false); });
+
+  /* ---- chart animation ---- */
+  const chart = document.getElementById('chart');
+  if(chart){
+    const fills = chart.querySelectorAll('.fill');
+    const target = Array.from(fills).map(f => f.style.getPropertyValue('--h'));
+    fills.forEach(f => f.style.height = '0%');
+    setTimeout(() => fills.forEach((f, k) => { f.style.height = target[k]; }), 700);
+  }
+
+  /* ---- lazy-ish image reveal ---- */
+  window.addEventListener('resize', () => go(i, false));
+})();
+</script>
+</body>
+</html>
